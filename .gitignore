@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows and Linux
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.directory
+.Trash-*
+
+# Editors (.vscode/settings.json is committed on purpose for luau-lsp)
+.idea/
+*.swp
+*.swo
+*~
+\#*\#
+.#*
+*.sublime-workspace
+.nova/
+.zed/
+.fleet/
+
+# Logs and scratch files
+*.log
+*.tmp

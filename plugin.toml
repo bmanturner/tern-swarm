@@ -1,0 +1,20 @@
+schema = 1
+id = "swarm"
+name = "Swarm"
+version = "0.1.0"
+description = "Kanban board that runs omp agents in git worktrees, gated by checks and human review."
+icon = "kanban"
+host = "host.luau"
+window = "window.luau"
+
+[[blocks]]
+id = "new-task"
+title = "New Swarm Task"
+icon = "kanban"
+palette = false
+
+[[blocks]]
+id = "settings"
+title = "Swarm Settings"
+icon = "gear"
+palette = false
