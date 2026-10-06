@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Rules for coding agents that change this plugin. For user docs, see README.md.
+Rules for coding agents that change this plugin. For user docs, see README.md and `docs/`.
 
 Swarm is a Tern plugin written in Luau. Read the Tern plugin SDK skill (`tern-plugin`, `SKILL.md`)
 before you change anything. API types are in `tern.d.luau`.
@@ -151,7 +151,7 @@ To add a key:
    `blocks/settings.luau`.
 4. If the key makes Swarm run something or tells agents something, add it to the `trust` items in
    `config.load`, so changing it asks for approval again.
-5. Add a row to the settings table in README.md and an entry in CHANGELOG.md.
+5. Add a row to the settings table in `docs/configuration.md` and an entry in CHANGELOG.md.
 
 After writing a settings file, call `config.forget()`, write the intent `{ kind = "config" }` and
 open `swarm://wake`. A write the user makes on the Settings page re-approves a repository that was
@@ -188,7 +188,12 @@ Window-half load errors show only as a toast and in `tern.log`, never in `tern p
 
 Update these in the same change as the code:
 
-- `README.md`: behavior, commands, settings, known limitations.
+- `README.md`: overview, install, quick start, the condensed task flow, security and trust.
+- `docs/configuration.md`: prerequisites, repository approval, lanes, review, panel, commands,
+  settings, card tags, task statuses, Carly, agent skills.
+- `docs/troubleshooting.md`: symptoms and fixes, logs, uninstall.
+- `docs/how-it-works.md`: the full task flow, internals, state files, platform support, known
+  limitations.
 - `CHANGELOG.md`: every user-visible change, under the unreleased version.
 - `skills/swarm/SKILL.md`: the agent skill for Swarm users.
 - The Carly export `doc` strings in `lib/carly.luau`, when exports change.

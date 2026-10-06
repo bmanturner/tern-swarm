@@ -11,7 +11,7 @@ description: Configure and debug the Swarm Tern plugin, which turns Kanban cards
 - A task in `Ready` (status `queued`) gets a git worktree, setup commands, and an omp agent in its own tab (`preparing`, then `running`).
 - When the agent finishes, Swarm runs the checks (`checking`). A pass moves the task to `Review`. A failure goes back to the agent until `max_attempts`, then the task is `blocked`.
 - In `Review` the user approves (`shipping`, then `shipped`: commit plus pull request, or commit only), retries, parks or discards.
-- Other statuses: `waiting` (the agent asked something, or opened another pane in its tab while working), `closed`, `parked`, `discarding`, `cancelled` (its card was removed). The README section "Task statuses" has the full table.
+- Other statuses: `waiting` (the agent asked something, or opened another pane in its tab while working), `closed`, `parked`, `discarding`, `cancelled` (its card was removed). The "Task statuses" section of `docs/configuration.md` has the full table.
 - Swarm runs nothing in a repository until the user approves, in the Swarm panel, what that repository makes it run: the project file's `setup`, `checks`, `env`, `agent_args`, `roles`, `instructions`, `base`, `remote`, `worktree_dir` and `on_checks_pass: "ship"`, plus detected `package.json` checks and the automatic `npm ci`. Approval is stored per repository path in `kv.json` under `trust`; any change to those items asks again (edits made on the Settings page keep an approved repository approved). Never approve on the user's behalf.
 
 ## Config files
@@ -32,7 +32,7 @@ How a key set in both files combines:
 
 Each key has a scope. Some keys are project-only (for example `checks`, `ship`, `env`, `max_attempts`), some are user-only (`layout.panel`, `bin_dirs`, `watchdog`, `max_concurrent_total`, `carly.context`), and the rest can be set in both. A key in the wrong file is ignored and reported.
 
-For every key, its default and valid values, read the Settings section of the installed README: `<plugins dir>/swarm/README.md`. `tern plugin dir` prints the plugins folder. The source of truth is `lib/schema.luau`. Don't guess keys; unknown keys are reported and ignored.
+For every key, its default and valid values, read the Settings section of the installed configuration docs: `<plugins dir>/swarm/docs/configuration.md`. `tern plugin dir` prints the plugins folder. The source of truth is `lib/schema.luau`. Don't guess keys; unknown keys are reported and ignored.
 
 ## Writing a project config
 
@@ -105,9 +105,9 @@ The orchestrator reads `intents/*.json` in name order on its next tick (every 3 
 
 ## Driving Swarm through Carly
 
-Carly exports: `open_board`, `add_task`, `list_tasks`, `task_action` (`approve`, `retry`, `park`, `discard`). `add_task` puts the task in Backlog unless `start = true` and returns `{project, slug, lane}`. `list_tasks` returns `{tasks, truncated}`. `task_action` fails at once when the task's status (in the last snapshot) doesn't allow the action, when approving in a held project, or when the merged `carly.actions` doesn't allow it (default: only `retry` and `park`). See the README Carly section for signatures.
+Carly exports: `open_board`, `add_task`, `list_tasks`, `task_action` (`approve`, `retry`, `park`, `discard`). `add_task` puts the task in Backlog unless `start = true` and returns `{project, slug, lane}`. `list_tasks` returns `{tasks, truncated}`. `task_action` fails at once when the task's status (in the last snapshot) doesn't allow the action, when approving in a held project, or when the merged `carly.actions` doesn't allow it (default: only `retry` and `park`). See the Carly section of `docs/configuration.md` for signatures.
 
-Card tags change a single task: `#role-<name>`, `#no-change-ok`, `#auto-ship`, `#draft`. See the README Card tags section.
+Card tags change a single task: `#role-<name>`, `#no-change-ok`, `#auto-ship`, `#draft`. See the Card tags section of `docs/configuration.md`.
 
 ## Safety
 
